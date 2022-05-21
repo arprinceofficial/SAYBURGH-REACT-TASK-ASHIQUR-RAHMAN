@@ -3,7 +3,6 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './screens/Home';
-import { getPopularMovies } from './services/Services';
 
 export default function App() {
   

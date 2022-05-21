@@ -1,18 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { getPopularMovies } from '../services/Services';
+import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
+import {
+    getPopularMovies,
+    getUpComingMovies
+} from '../services/Services';
+import { SliderBox } from "react-native-image-slider-box";
+import List from '../components/List';
 
 
+const dimensions = Dimensions.get('screen');
 
 export default function Home() {
-  const [movies, setMovies] = useState('');
+    const [moviesImages, setMovies] = useState('');
+    const [popularMovies, setpopularMovies] = useState('');
     const [error, setError] = useState(false);
 
 
-  useEffect(() => {
+    useEffect(() => {
+        getUpComingMovies()
+            .then(movie => {
+                const moviesImagesArray = [];
+                movie.forEach(movie => {
+                   moviesImagesArray.push('https://image.tmdb.org/t/p/w500'+movie.poster_path);
+                });
+            setMovies(moviesImagesArray);
+        })
+            .catch(error => {
+                setError(error);
+            });
+        
+        
     getPopularMovies()
-      .then(movies => {
-        setMovies(movies[0]);
+        .then(movies => {
+            setpopularMovies(movies);
       })
       .catch(error => {
         setError(error);
@@ -21,19 +41,33 @@ export default function Home() {
   }, []);
     
     return (
-        <View style={styles.container}>
-            <Text>Title: {movies.original_title}</Text>
-            <Text>Title: {movies.title}</Text>
-            <Text>Title: {movies.vote_count}</Text>
-        </View>
+        <React.Fragment>
+            <View style={styles.slidercontainer}>
+            <SliderBox
+                images={moviesImages}
+                sliderBoxHeight={dimensions.height / 1.5}
+                autoplay={true}
+                circleLoop
+                dotStyle={styles.sliderDot}
+            />
+            </View>
+            <View style={styles.carousel}>
+                <List title="Upcoming Movies" content={popularMovies} />
+            </View>
+        </React.Fragment>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  slidercontainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+    },
+    carousel: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
