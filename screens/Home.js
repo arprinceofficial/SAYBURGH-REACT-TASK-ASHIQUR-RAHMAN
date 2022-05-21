@@ -9,6 +9,7 @@ import {
 } from '../services/Services';
 import { SliderBox } from "react-native-image-slider-box";
 import List from '../components/List';
+import Error from '../components/Error';
 
 
 const dimensions = Dimensions.get('screen');
@@ -52,9 +53,11 @@ export default function Home() {
         setPopularTv(PopularTvData);
         setFamilyMovies(FamilyMoviesData);
         setDocumentaryMovies(DocumentaryMoviesData);
-      }).catch(error => {
+      })
+      .catch(() => {
         setError(true)
-      }).finally(() => {
+      })
+      .finally(() => {
         setLoaded(true)
       });
 
@@ -62,7 +65,7 @@ export default function Home() {
     
     return (
       <React.Fragment>
-        {loaded && (
+        {loaded && !error && (
           <ScrollView>
               {/* UpComing Movies Images */}
               {moviesImages && (
@@ -102,7 +105,8 @@ export default function Home() {
               )} 
           </ScrollView>
         )}
-        {!loaded && (<ActivityIndicator size="large" />)}  
+        {!loaded && (<ActivityIndicator size="large" />)}
+        {error && <Error></Error>}
         </React.Fragment>
     );
 }
