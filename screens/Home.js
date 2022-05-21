@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView, ActivityIndicator  } from 'react-native';
 import {
     getPopularMovies,
     getUpComingMovies,
@@ -21,6 +21,7 @@ export default function Home() {
     const [DocumentaryMovies, setDocumentaryMovies] = useState();
     
     const [error, setError] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
   const getData = () => {
        
@@ -51,14 +52,18 @@ export default function Home() {
         setPopularTv(PopularTvData);
         setFamilyMovies(FamilyMoviesData);
         setDocumentaryMovies(DocumentaryMoviesData);
-      })
-      .catch(() => setError(true));
+      }).catch(error => {
+        setError(true)
+      }).finally(() => {
+        setLoaded(true)
+      });
 
   }, []);
     
     return (
-        <React.Fragment>
-            <ScrollView>
+      <React.Fragment>
+        {loaded && (
+          <ScrollView>
               {/* UpComing Movies Images */}
               {moviesImages && (
                 <View style={styles.slidercontainer}>
@@ -95,7 +100,9 @@ export default function Home() {
                     <List title="Documentary Movies" content={DocumentaryMovies} />
                 </View>
               )} 
-            </ScrollView>
+          </ScrollView>
+        )}
+        {!loaded && (<ActivityIndicator size="large" />)}  
         </React.Fragment>
     );
 }
