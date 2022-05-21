@@ -2,7 +2,10 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
 import {
     getPopularMovies,
-    getUpComingMovies
+    getUpComingMovies,
+    getPopularTv,
+    getFamilyMovies,
+    getDocumentaryMovies,
 } from '../services/Services';
 import { SliderBox } from "react-native-image-slider-box";
 import List from '../components/List';
@@ -13,6 +16,9 @@ const dimensions = Dimensions.get('screen');
 export default function Home() {
     const [moviesImages, setMovies] = useState('');
     const [popularMovies, setpopularMovies] = useState('');
+    const [PopularTv, setPopularTv] = useState('');
+    const [FamilyMovies, setFamilyMovies] = useState('');
+    const [DocumentaryMovies, setDocumentaryMovies] = useState('');
     const [error, setError] = useState(false);
 
 
@@ -38,6 +44,31 @@ export default function Home() {
         setError(error);
       });
 
+
+     getPopularTv()
+        .then(movies => {
+            setPopularTv(movies);
+      })
+      .catch(error => {
+        setError(error);
+      });
+
+     getFamilyMovies()
+        .then(movies => {
+            setFamilyMovies(movies);
+      })
+      .catch(error => {
+        setError(error);
+      });
+
+     getDocumentaryMovies()
+        .then(movies => {
+            setDocumentaryMovies(movies);
+      })
+      .catch(error => {
+        setError(error);
+      });
+
   }, []);
     
     return (
@@ -55,6 +86,18 @@ export default function Home() {
 
                 <View style={styles.carousel}>
                     <List title="Popular Movies" content={popularMovies} />
+                </View>
+          
+                <View style={styles.carousel}>
+                    <List title="Popular TV Shows" content={PopularTv} />
+                </View>
+          
+                <View style={styles.carousel}>
+                    <List title="Family Movies" content={FamilyMovies} />
+                </View>
+          
+                <View style={styles.carousel}>
+                    <List title="Documentary Movies" content={DocumentaryMovies} />
                 </View>
                 
             </ScrollView>
