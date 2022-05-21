@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-
+import PropTypes from 'prop-types';
 
 const placeholderImage = require('../assets/Images/placeholder.jpg');
+
+const propTypes = {
+    // item: PropTypes.object.isRequired,
+    item: PropTypes.object,
+}
 
 class Card extends React.PureComponent {
 
@@ -45,4 +50,8 @@ const styles = StyleSheet.create({
     }
 
 });
+
+
+Card.propTypes = propTypes;
+
 export default Card;
