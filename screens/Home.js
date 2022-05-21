@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView, ActivityIndicator  } from 'react-native';
 import {
     getPopularMovies,
     getUpComingMovies,
@@ -9,6 +9,7 @@ import {
 } from '../services/Services';
 import { SliderBox } from "react-native-image-slider-box";
 import List from '../components/List';
+import Error from '../components/Error';
 
 
 const dimensions = Dimensions.get('screen');
@@ -21,6 +22,7 @@ export default function Home() {
     const [DocumentaryMovies, setDocumentaryMovies] = useState();
     
     const [error, setError] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
   const getData = () => {
        
@@ -52,13 +54,19 @@ export default function Home() {
         setFamilyMovies(FamilyMoviesData);
         setDocumentaryMovies(DocumentaryMoviesData);
       })
-      .catch(() => setError(true));
+      .catch(() => {
+        setError(true)
+      })
+      .finally(() => {
+        setLoaded(true)
+      });
 
   }, []);
     
     return (
-        <React.Fragment>
-            <ScrollView>
+      <React.Fragment>
+        {loaded && !error && (
+          <ScrollView>
               {/* UpComing Movies Images */}
               {moviesImages && (
                 <View style={styles.slidercontainer}>
@@ -95,7 +103,10 @@ export default function Home() {
                     <List title="Documentary Movies" content={DocumentaryMovies} />
                 </View>
               )} 
-            </ScrollView>
+          </ScrollView>
+        )}
+        {!loaded && (<ActivityIndicator size="large" />)}
+        {error && <Error></Error>}
         </React.Fragment>
     );
 }
