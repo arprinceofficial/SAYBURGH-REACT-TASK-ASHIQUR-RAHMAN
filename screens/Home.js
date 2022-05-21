@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
 import {
     getPopularMovies,
     getUpComingMovies
@@ -37,23 +37,27 @@ export default function Home() {
       .catch(error => {
         setError(error);
       });
-    // console.log(movies);
+
   }, []);
     
     return (
         <React.Fragment>
-            <View style={styles.slidercontainer}>
-            <SliderBox
-                images={moviesImages}
-                sliderBoxHeight={dimensions.height / 1.5}
-                autoplay={true}
-                circleLoop
-                dotStyle={styles.sliderDot}
-            />
-            </View>
-            <View style={styles.carousel}>
-                <List title="Popular Movies" content={popularMovies} />
-            </View>
+            <ScrollView>
+                <View style={styles.slidercontainer}>
+                    <SliderBox
+                        images={moviesImages}
+                        sliderBoxHeight={dimensions.height / 2}
+                        autoplay={true}
+                        circleLoop
+                        dotStyle={styles.sliderDot}
+                    />
+                </View>
+
+                <View style={styles.carousel}>
+                    <List title="Popular Movies" content={popularMovies} />
+                </View>
+                
+            </ScrollView>
         </React.Fragment>
     );
 }
