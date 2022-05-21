@@ -1,11 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
+
+
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './screens/Home';
+import { getPopularMovies } from './services/Services';
 
 export default function App() {
+  
   return (
     <View style={styles.container}>
-      <Text>Hello</Text>
-      <StatusBar style="auto" />
+
+
+      <Home></Home>
     </View>
   );
 }
@@ -18,3 +24,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
