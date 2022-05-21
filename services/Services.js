@@ -52,4 +52,13 @@ export const getDocumentaryMovies = async () => {
 };
 
 
+// Movie Details
+export const getMovie = async (id) => {
+  const response = await axios.get(
+    `${ApiUrl}/movie/${id}?${ApiKey}`
+  );
+    return response.data;
+};
+
+
 // --------------------- End Collecting Api For All Movies ---------------------
