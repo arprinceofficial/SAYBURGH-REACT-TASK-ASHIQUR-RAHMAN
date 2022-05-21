@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
     // item: PropTypes.object.isRequired,
     title: PropTypes.object,
-    content: PropTypes.object,
+    content: PropTypes.array,
 }
 
 
