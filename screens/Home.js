@@ -14,7 +14,7 @@ import Error from '../components/Error';
 
 const dimensions = Dimensions.get('screen');
 
-export default function Home() {
+export default function Home({navigation}) {
     const [moviesImages, setMovies] = useState();
     const [popularMovies, setpopularMovies] = useState();
     const [PopularTv, setPopularTv] = useState();
@@ -82,25 +82,25 @@ export default function Home() {
               {/* Popular Movies */}
               {popularMovies && (
                 <View style={styles.carousel}>
-                  <List title="Popular Movies" content={popularMovies} />
+                  <List navigation={navigation} title="Popular Movies" content={popularMovies} />
                 </View>
               )}
               {/* Popular Tv Shows */}
               {PopularTv && (
                 <View style={styles.carousel}>
-                  <List title="Popular TV Shows" content={PopularTv} />
+                  <List navigation={navigation} title="Popular TV Shows" content={PopularTv} />
                 </View>
               )}
               {/* Family Movies */}
               {FamilyMovies && (
                 <View style={styles.carousel}>
-                  <List title="Family Movies" content={FamilyMovies} />
+                  <List navigation={navigation} title="Family Movies" content={FamilyMovies} />
                 </View>
               )}
               {/* Documentary Movies */}
               {DocumentaryMovies && (
                 <View style={styles.carousel}>
-                    <List title="Documentary Movies" content={DocumentaryMovies} />
+                    <List navigation={navigation} title="Documentary Movies" content={DocumentaryMovies} />
                 </View>
               )} 
           </ScrollView>
