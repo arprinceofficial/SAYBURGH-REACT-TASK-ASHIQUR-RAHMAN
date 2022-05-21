@@ -52,7 +52,7 @@ export default function Home() {
             />
             </View>
             <View style={styles.carousel}>
-                <List title="Upcoming Movies" content={popularMovies} />
+                <List title="Popular Movies" content={popularMovies} />
             </View>
         </React.Fragment>
     );
@@ -69,5 +69,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    sliderDot: {
+        height: 0,
     },
 });
