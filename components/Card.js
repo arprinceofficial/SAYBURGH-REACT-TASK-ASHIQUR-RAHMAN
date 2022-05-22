@@ -33,20 +33,20 @@ const styles = StyleSheet.create({
     container: {
         padding: 5,
         position: 'relative',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         height: 200,
     },
     image: {
         height: 200,
-        width: 120,
+        width: 140,
         borderRadius: 20,
     },
     movieName: {
-        position: 'absolute',
+        // position: 'absolute',
         width: 100,
         top: 10,
-        textAlign: 'center',
+        // textAlign: 'center',
     }
 
 });

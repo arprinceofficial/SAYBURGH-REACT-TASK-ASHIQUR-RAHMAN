@@ -2,7 +2,6 @@
 import React, {useState, useEffect} from 'react';
 import { Text, ActivityIndicator, StyleSheet, View, ScrollView, Image, Dimensions } from 'react-native';
 import StarRating from 'react-native-star-rating';
-// import {getMovie} from '../services/Services';
 
 const placeholderImage = require('../assets/Images/placeholder.jpg');
 const height = Dimensions.get('window').height;
@@ -10,22 +9,9 @@ const height = Dimensions.get('window').height;
 
 const Detail = ({ route, navigation }) => {
 
-    // const { movieId } = route.params.movieDetail.id;
-    // const [movieDetail, setMovieDetail] = useState();
-    // const [loaded, setLoaded] = useState(false);
-
-    // useEffect(() => {
-    //     getMovie(movieId).then(movieData => {
-    //         setMovieDetail(movieData);
-    //         setLoaded(true);
-    //     })
-    // }, [movieData]);
-
-
-
-
     const [loaded, setLoaded] = useState(false);
     const { movieDetail } = route.params;
+
     return (
         <React.Fragment>
             {!loaded && (
@@ -43,7 +29,7 @@ const Detail = ({ route, navigation }) => {
                             maxStars={5}
                             rating={movieDetail.vote_average / 2}
                         />
-                        
+                        <Text>Release Date: {movieDetail.release_date}</Text>
                     </View>
                 </ScrollView>
             )}

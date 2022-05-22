@@ -42,13 +42,14 @@ class List extends React.PureComponent {
 const styles = StyleSheet.create({
     list: {
         flex: 1,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginTop: 25,
+        // marginTop: 25,
+        marginBottom: 15,
     },
 });
 
