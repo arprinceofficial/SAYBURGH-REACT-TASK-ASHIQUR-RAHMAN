@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
+    paddingLeft: 5,
   },
   ActivityIndicator: {
     flex: 1,
