@@ -2,7 +2,6 @@
 import React, {useState, useEffect} from 'react';
 import { Text, ActivityIndicator, StyleSheet, View, ScrollView, Image, Dimensions } from 'react-native';
 import StarRating from 'react-native-star-rating';
-// import {getMovie} from '../services/Services';
 
 const placeholderImage = require('../assets/Images/placeholder.jpg');
 const height = Dimensions.get('window').height;
@@ -10,27 +9,14 @@ const height = Dimensions.get('window').height;
 
 const Detail = ({ route, navigation }) => {
 
-    // const { movieId } = route.params.movieDetail.id;
-    // const [movieDetail, setMovieDetail] = useState();
-    // const [loaded, setLoaded] = useState(false);
-
-    // useEffect(() => {
-    //     getMovie(movieId).then(movieData => {
-    //         setMovieDetail(movieData);
-    //         setLoaded(true);
-    //     })
-    // }, [movieData]);
-
-
-
-
     const [loaded, setLoaded] = useState(false);
     const { movieDetail } = route.params;
+
     return (
         <React.Fragment>
             {!loaded && (
                 <ScrollView>
-                    <View>
+                    <View >
                         <Image
                             resizeMode='cover'
                             style={styles.image}
@@ -38,12 +24,18 @@ const Detail = ({ route, navigation }) => {
                                 movieDetail.poster_path ? { uri: 'https://image.tmdb.org/t/p/w500' + movieDetail.poster_path } : placeholderImage
                             }
                         />
-                        <Text style={styles.movieTitle}>{movieDetail.title}</Text>
-                        <StarRating
-                            maxStars={5}
-                            rating={movieDetail.vote_average / 2}
-                        />
-                        
+                        <View style={styles.body}>
+                            <Text style={styles.movieTitle}>{movieDetail.title}</Text>
+                            <StarRating
+                                maxStars={5}
+                                starSize={25}
+                                spacing={5}
+                                rating={movieDetail.vote_average / 2}
+                            />
+                            <Text style={styles.Date}><Text  style={styles.bold}>Release Date :</Text> {movieDetail.release_date}</Text>
+                            <Text style={styles.Description}>Description</Text>
+                            <Text>{movieDetail.overview}</Text>
+                        </View>
                     </View>
                 </ScrollView>
             )}
@@ -54,6 +46,10 @@ const Detail = ({ route, navigation }) => {
 
 
 const styles = StyleSheet.create({
+    body: {
+        marginLeft: 10,
+        marginRight: 10,
+    },
     image: {
         height: height/2,
     },
@@ -67,6 +63,19 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    Date: {
+        marginTop: 10,
+        fontSize: 15,
+    },
+    Description: {
+        marginTop: 10,
+        marginBottom: 5,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    bold: {
+        fontWeight: 'bold',
     },
 });
 

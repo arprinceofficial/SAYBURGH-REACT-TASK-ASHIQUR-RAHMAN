@@ -13,12 +13,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   
   return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Detail" component={Detail} />
-        </Stack.Navigator>
-      </NavigationContainer>
+    // --------------------- Navigation Bar ---------------------
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Detail" component={Detail} options={{ title: 'Details' }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
