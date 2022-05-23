@@ -44,7 +44,7 @@ export const getFamilyMovies = async () => {
 };
 
 // Get Horror Movies
-export const getDocumentaryMovies = async () => {
+export const getHorrorMovies = async () => {
   const response = await axios.get(
     `${ApiUrl}/discover/movie?${ApiKey}&with_genres=27`
   );
