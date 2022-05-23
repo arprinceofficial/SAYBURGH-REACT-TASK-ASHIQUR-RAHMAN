@@ -63,6 +63,7 @@ export default function Home({navigation}) {
     <React.Fragment>
       {loaded && !error && (
         <ScrollView>
+
           {/* UpComing Movies Images */}
           {moviesImages && (
             <View style={styles.slidercontainer}>
@@ -78,6 +79,8 @@ export default function Home({navigation}) {
               />
             </View>
           )}
+
+          {/* Slider All Movies */}
           <View style={styles.Sliderbody}>
             {/* Popular Movies */}
             {popularMovies && (
@@ -109,7 +112,7 @@ export default function Home({navigation}) {
                 </View>
               </View>
             )}
-            {/* Documentary Movies */}
+            {/* Horror Movies Movies */}
             {HorrorMovies && (
               <View style={styles.carousel}>
                 <List navigation={navigation} title="Horror Movies" content={HorrorMovies.slice(0, 10)} />
@@ -155,20 +158,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   carousel: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     marginTop: 15,
     marginBottom: 15,
   },
   sliderDot: {
     width: 10,
     height: 10,
-    // borderRadius: 5,
-    // marginHorizontal: 0,
-    // padding: 0,
-    // margin: 0,
-    // backgroundColor: "rgba(128, 128, 128, 0.92)"
   },
   Button: {
     marginTop: 5,

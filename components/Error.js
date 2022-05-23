@@ -13,11 +13,12 @@ const defaultProps = {
     errorText2: 'Make sure you have internet connection',
 };
 
-
+// When API Failed to Fetch Data Then We Show This Error Message
 class Error extends React.PureComponent {
 
     render() {
         const { errorText1, errorText2 } = this.props;
+
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{errorText1}</Text>
@@ -36,10 +37,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontWeight: 'bold',
-        // marginRight: 10,
-        // marginLeft: 10,
-    }
-
+    },
 });
 
 

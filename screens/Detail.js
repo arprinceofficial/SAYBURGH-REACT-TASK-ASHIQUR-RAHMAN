@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Text, ActivityIndicator, StyleSheet, View, ScrollView, Image, Dimensions } from 'react-native';
 import StarRating from 'react-native-star-rating';
 
@@ -12,6 +12,7 @@ const Detail = ({ route, navigation }) => {
     const [loaded, setLoaded] = useState(false);
     const { movieDetail } = route.params;
 
+    // Show Movie Details Individual (When Click Movie It Redirect to Here)
     return (
         <React.Fragment>
             {!loaded && (
@@ -39,6 +40,7 @@ const Detail = ({ route, navigation }) => {
                     </View>
                 </ScrollView>
             )}
+            
             {loaded && (<ActivityIndicator style={styles.ActivityIndicator} size="large" />)}
         </React.Fragment>
     );

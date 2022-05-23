@@ -1,18 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 const placeholderImage = require('../assets/Images/placeholder.jpg');
 
 const propTypes = {
-    // item: PropTypes.object.isRequired,
     item: PropTypes.object,
 }
 
+
+// Here We Show Every Movie Images When Scrolling and Clicking It Redirect to Detail Page
 class Card extends React.PureComponent {
 
     render() {
         const { item, navigation } = this.props;
+
         return (
             <TouchableOpacity onPress={() => navigation.navigate('Detail', {movieDetail: item})} style={styles.container}>
                 <Image
@@ -33,8 +35,6 @@ const styles = StyleSheet.create({
     container: {
         padding: 5,
         position: 'relative',
-        // alignItems: 'center',
-        // justifyContent: 'center',
         height: 200,
     },
     image: {
@@ -43,12 +43,9 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     movieName: {
-        // position: 'absolute',
         width: 100,
         top: 10,
-        // textAlign: 'center',
-    }
-
+    },
 });
 
 
