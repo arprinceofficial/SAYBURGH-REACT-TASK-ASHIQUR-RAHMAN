@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Dimensions, ScrollView, ActivityIndicator  } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView, ActivityIndicator, Button  } from 'react-native';
 import {
     getPopularMovies,
     getUpComingMovies,
     getPopularTv,
     getFamilyMovies,
-    getDocumentaryMovies,
+    getHorrorMovies,
 } from '../services/Services';
 import { SliderBox } from "react-native-image-slider-box";
 import List from '../components/List';
@@ -18,9 +18,8 @@ const dimensions = Dimensions.get('screen');
 export default function Home({navigation}) {
   const [moviesImages, setMovies] = useState();
   const [popularMovies, setpopularMovies] = useState();
-  const [PopularTv, setPopularTv] = useState();
   const [FamilyMovies, setFamilyMovies] = useState();
-  const [DocumentaryMovies, setDocumentaryMovies] = useState();
+  const [HorrorMovies, setHorrorMovies] = useState();
   
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -29,9 +28,8 @@ export default function Home({navigation}) {
     return Promise.all([
       getUpComingMovies(),
       getPopularMovies(),
-      getPopularTv(),
       getFamilyMovies(),
-      getDocumentaryMovies(),
+      getHorrorMovies(),
     ]);
   };
 
@@ -39,9 +37,8 @@ export default function Home({navigation}) {
     getData().then(([
       upComingMoviesData,
       popularMoviesData,
-      PopularTvData,
       FamilyMoviesData,
-      DocumentaryMoviesData
+      HorrorMoviesData
     ]) =>
     { 
       const moviesImagesArray = [];
@@ -50,9 +47,8 @@ export default function Home({navigation}) {
       });
       setMovies(moviesImagesArray);
       setpopularMovies(popularMoviesData);
-      setPopularTv(PopularTvData);
       setFamilyMovies(FamilyMoviesData);
-      setDocumentaryMovies(DocumentaryMoviesData);
+      setHorrorMovies(HorrorMoviesData);
     })
     .catch(() => {
       setError(true)
@@ -87,24 +83,45 @@ export default function Home({navigation}) {
             {popularMovies && (
               <View style={styles.carousel}>
                 <List navigation={navigation} title="Popular Movies" content={popularMovies.slice(0, 10)} />
+                  <View style={styles.Button}>
+                    <Button
+                      title="More Popular Movies"
+                      onPress={() => {
+                        navigation.navigate('MoreMovies', {
+                        });
+                      }}
+                    />
+                </View>
               </View>
             )}
-            {/* Popular Tv Shows */}
-            {/* {PopularTv && (
-              <View style={styles.carousel}>
-                <List navigation={navigation} title="Popular TV Shows" content={PopularTv.slice(0, 10)} />
-              </View>
-            )} */}
             {/* Family Movies */}
             {FamilyMovies && (
               <View style={styles.carousel}>
                 <List navigation={navigation} title="Family Movies" content={FamilyMovies.slice(0, 10)} />
+                  <View style={styles.Button}>
+                    <Button
+                      title="More Family Movies"
+                      onPress={() => {
+                        navigation.navigate('MoreMovies', {
+                        });
+                      }}
+                    />
+                </View>
               </View>
             )}
             {/* Documentary Movies */}
-            {DocumentaryMovies && (
+            {HorrorMovies && (
               <View style={styles.carousel}>
-                <List navigation={navigation} title="Horror Movies" content={DocumentaryMovies.slice(0, 10)} />
+                <List navigation={navigation} title="Horror Movies" content={HorrorMovies.slice(0, 10)} />
+                  <View style={styles.Button}>
+                    <Button
+                      title="More Horror Movies"
+                      onPress={() => {
+                        navigation.navigate('MoreMovies', {
+                        });
+                      }}
+                    />
+                </View>
               </View>
             )}
           </View>
@@ -130,6 +147,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 15,
     paddingLeft: 5,
+    textAlign: 'center',
   },
   ActivityIndicator: {
     flex: 1,
@@ -151,5 +169,9 @@ const styles = StyleSheet.create({
     // padding: 0,
     // margin: 0,
     // backgroundColor: "rgba(128, 128, 128, 0.92)"
+  },
+  Button: {
+    marginTop: 5,
+    padding: 10,
   },
 });
