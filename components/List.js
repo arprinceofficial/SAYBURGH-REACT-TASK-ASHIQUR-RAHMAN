@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Card from './Card';
 import PropTypes from 'prop-types';
 
 
 const propTypes = {
-    // item: PropTypes.object.isRequired,
     title: PropTypes.string,
     content: PropTypes.array,
 }
 
 
-
+// Rendering Movie List From Here
 class List extends React.PureComponent {
 
     render() {
-        const {title, content, navigation}=this.props;
+        const { title, content, navigation } = this.props;
+        
         return (
             <View style={styles.list}>
                 <View>
@@ -26,7 +26,7 @@ class List extends React.PureComponent {
                         data={content}
                         horizontal={true}
                         renderItem={({ item }) =>
-                        <Card navigation={navigation} item={item}/>
+                            <Card navigation={navigation} item={item}/>
                         }
                     >
                     </FlatList>
@@ -42,13 +42,11 @@ class List extends React.PureComponent {
 const styles = StyleSheet.create({
     list: {
         flex: 1,
-        // alignItems: 'center',
         justifyContent: 'center',
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        // marginTop: 25,
         marginBottom: 15,
     },
 });

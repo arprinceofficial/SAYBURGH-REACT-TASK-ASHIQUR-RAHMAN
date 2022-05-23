@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, Dimensions, ScrollView, ActivityIndicator, Button, Image  } from 'react-native';
+import { StyleSheet, View, Dimensions, ScrollView, ActivityIndicator  } from 'react-native';
 import {
     getPopularMovies,
 
@@ -40,7 +40,7 @@ export default function Movies({navigation}) {
 
   }, []);
     
-    
+  // When Click Button Here We Show Rest of the Movie List
   return (
       <React.Fragment>
       {loaded && !error && (
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
   carousel: {
     flex: 1,
-    // flexDirection:'column',
     flexDirection:'row',
   },
 

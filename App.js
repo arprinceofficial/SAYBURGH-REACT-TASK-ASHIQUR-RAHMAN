@@ -1,7 +1,3 @@
-
-
-import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import Home from './screens/Home';
 import Detail from './screens/Detail';
 import MoreMovies from './screens/MoreMovies';
