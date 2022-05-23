@@ -82,30 +82,32 @@ export default function Home({navigation}) {
               />
             </View>
           )}
-          {/* Popular Movies */}
-          {popularMovies && (
-            <View style={styles.carousel}>
-              <List navigation={navigation} title="Popular Movies" content={popularMovies.slice(0, 10)} />
-            </View>
-          )}
-          {/* Popular Tv Shows */}
-          {PopularTv && (
-            <View style={styles.carousel}>
-              <List navigation={navigation} title="Popular TV Shows" content={PopularTv.slice(0, 10)} />
-            </View>
-          )}
-          {/* Family Movies */}
-          {FamilyMovies && (
-            <View style={styles.carousel}>
-              <List navigation={navigation} title="Family Movies" content={FamilyMovies.slice(0, 10)} />
-            </View>
-          )}
-          {/* Documentary Movies */}
-          {DocumentaryMovies && (
-            <View style={styles.carousel}>
-              <List navigation={navigation} title="Documentary Movies" content={DocumentaryMovies.slice(0, 10)} />
-            </View>
-          )} 
+          <View style={styles.Sliderbody}>
+            {/* Popular Movies */}
+            {popularMovies && (
+              <View style={styles.carousel}>
+                <List navigation={navigation} title="Popular Movies" content={popularMovies.slice(0, 10)} />
+              </View>
+            )}
+            {/* Popular Tv Shows */}
+            {/* {PopularTv && (
+              <View style={styles.carousel}>
+                <List navigation={navigation} title="Popular TV Shows" content={PopularTv.slice(0, 10)} />
+              </View>
+            )} */}
+            {/* Family Movies */}
+            {FamilyMovies && (
+              <View style={styles.carousel}>
+                <List navigation={navigation} title="Family Movies" content={FamilyMovies.slice(0, 10)} />
+              </View>
+            )}
+            {/* Documentary Movies */}
+            {DocumentaryMovies && (
+              <View style={styles.carousel}>
+                <List navigation={navigation} title="Horror Movies" content={DocumentaryMovies.slice(0, 10)} />
+              </View>
+            )}
+          </View>
         </ScrollView>
       )}
 
@@ -117,6 +119,9 @@ export default function Home({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  Sliderbody: {
+    padding: 5,
+  },
   slidercontainer: {
     marginTop: 15,
   },
@@ -135,6 +140,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
     marginTop: 15,
+    marginBottom: 15,
   },
   sliderDot: {
     width: 10,

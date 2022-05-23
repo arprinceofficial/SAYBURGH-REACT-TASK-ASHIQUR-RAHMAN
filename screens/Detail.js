@@ -16,7 +16,7 @@ const Detail = ({ route, navigation }) => {
         <React.Fragment>
             {!loaded && (
                 <ScrollView>
-                    <View>
+                    <View >
                         <Image
                             resizeMode='cover'
                             style={styles.image}
@@ -24,12 +24,18 @@ const Detail = ({ route, navigation }) => {
                                 movieDetail.poster_path ? { uri: 'https://image.tmdb.org/t/p/w500' + movieDetail.poster_path } : placeholderImage
                             }
                         />
-                        <Text style={styles.movieTitle}>{movieDetail.title}</Text>
-                        <StarRating
-                            maxStars={5}
-                            rating={movieDetail.vote_average / 2}
-                        />
-                        <Text>Release Date: {movieDetail.release_date}</Text>
+                        <View style={styles.body}>
+                            <Text style={styles.movieTitle}>{movieDetail.title}</Text>
+                            <StarRating
+                                maxStars={5}
+                                starSize={25}
+                                spacing={5}
+                                rating={movieDetail.vote_average / 2}
+                            />
+                            <Text style={styles.Date}><Text  style={styles.bold}>Release Date :</Text> {movieDetail.release_date}</Text>
+                            <Text style={styles.Description}>Description</Text>
+                            <Text>{movieDetail.overview}</Text>
+                        </View>
                     </View>
                 </ScrollView>
             )}
@@ -40,6 +46,10 @@ const Detail = ({ route, navigation }) => {
 
 
 const styles = StyleSheet.create({
+    body: {
+        marginLeft: 10,
+        marginRight: 10,
+    },
     image: {
         height: height/2,
     },
@@ -53,6 +63,19 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    Date: {
+        marginTop: 10,
+        fontSize: 15,
+    },
+    Description: {
+        marginTop: 10,
+        marginBottom: 5,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    bold: {
+        fontWeight: 'bold',
     },
 });
 

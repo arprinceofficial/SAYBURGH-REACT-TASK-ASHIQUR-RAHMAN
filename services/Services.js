@@ -43,10 +43,10 @@ export const getFamilyMovies = async () => {
     return response.data.results;
 };
 
-// Get Documentary
+// Get Horror Movies
 export const getDocumentaryMovies = async () => {
   const response = await axios.get(
-    `${ApiUrl}/discover/movie?${ApiKey}&with_genres=99`
+    `${ApiUrl}/discover/movie?${ApiKey}&with_genres=27`
   );
     return response.data.results;
 };
